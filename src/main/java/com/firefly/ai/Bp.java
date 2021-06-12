@@ -75,7 +75,7 @@ public class Bp {
                 lossHideWDe(hideLayerDe,hideLayerVal,input[row],hideLayerWDiff);
             }
 
-            loss(input,label,fitListener);
+            loss(input,label,i,fitListener);
 
             subVals(hideLayerB,hideLayerBDiff,rate);
             subVals(hideLayerW,hideLayerWDiff,rate);
@@ -99,8 +99,8 @@ public class Bp {
         return outLayerVal;
     }
 
-    private void loss(double[][] input, double[][] label,FitListener fitListener){
-        if(fitListener!=null){
+    private void loss(double[][] input, double[][] label,int epoch,FitListener fitListener){
+        if(fitListener!=null && fitListener.isOnLoss(epoch)){
             double err=0;
             for(int row=0;row<input.length;row++){
                 double[] val=predict(input[row]);
@@ -109,7 +109,7 @@ public class Bp {
                 }
             }
             err*=0.5;
-            fitListener.onLoss(err);
+            fitListener.onLoss(epoch,err);
         }
     }
 

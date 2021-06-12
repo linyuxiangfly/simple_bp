@@ -13,20 +13,34 @@ public class Test1 {
                 {1,1,0},
                 {1,1,1},
         };
+//        double[][] y={
+//                {1,1},
+//                {0,0},
+//                {0,0},
+//                {0,0},
+//                {0,0},
+//                {0,0},
+//                {0,0},
+//                {1,1},
+//        };
         double[][] y={
-                {1,1},
-                {0,0},
-                {0,0},
-                {0,0},
-                {0,0},
-                {0,0},
-                {0,0},
-                {1,1},
+                {1},
+                {0},
+                {0},
+                {0},
+                {0},
+                {0},
+                {0},
+                {1},
         };
 
-        Bp bp=new Bp(0.1,3,10,2);
+        Bp bp=new Bp(0.1,3,10,1);
         bp.fit(x, y, 1, 1000000, new FitListener() {
-            public void onLoss(double loss) {
+            public boolean isOnLoss(int epoch) {
+                return epoch%10000==0;
+            }
+
+            public void onLoss(int epoch,double loss) {
                 System.out.println(loss);
             }
         });

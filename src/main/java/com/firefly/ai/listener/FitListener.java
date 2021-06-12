@@ -1,5 +1,6 @@
 package com.firefly.ai.listener;
 
 public interface FitListener {
-    public void onLoss(double loss);
+    boolean isOnLoss(int epoch);
+    void onLoss(int epoch,double loss);
 }
