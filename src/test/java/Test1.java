@@ -45,9 +45,49 @@ public class Test1 {
             }
         });
 
+        double[][] hw=bp.getHideLayerW();
+        double[] hb=bp.getHideLayerB();
+        double[][] ow=bp.getOutLayerW();
+        double[] ob=bp.getOutLayerB();
+
+        printParam("HideLayerW",hw);
+        System.out.println();
+        printParam("HideLayerB",hb);
+        System.out.println();
+        printParam("OutLayerW",ow);
+        System.out.println();
+        printParam("OutLayerB",ob);
+        System.out.println();
+
         for(int i=0;i<x.length;i++){
             print(y[i],bp.predict(x[i]));
         }
+    }
+
+    private static void printParam(String paramName,double[][] param){
+        String retVal="";
+
+        retVal=paramName+":\n[\n";
+        for(int i=0;i<param.length;i++){
+            retVal+="   [";
+            for(int j=0;j<param[i].length;j++){
+                retVal+=param[i][j]+(j==param[i].length-1?"":",");
+            }
+            retVal+=i==param.length-1?"]":"],\n";
+        }
+        retVal+="\n]";
+        System.out.println(retVal);
+    }
+
+    private static void printParam(String paramName,double[] param){
+        String retVal="";
+
+        retVal=paramName+":\n[";
+        for(int i=0;i<param.length;i++){
+            retVal+=param[i]+(i==param.length-1?"":",");
+        }
+        retVal+="]";
+        System.out.println(retVal);
     }
 
     private static void print(double[] label,double[] val){

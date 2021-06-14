@@ -32,6 +32,22 @@ public class Bp {
         randVals(outLayerB);
     }
 
+    public double[][] getHideLayerW() {
+        return hideLayerW;
+    }
+
+    public double[] getHideLayerB() {
+        return hideLayerB;
+    }
+
+    public double[][] getOutLayerW() {
+        return outLayerW;
+    }
+
+    public double[] getOutLayerB() {
+        return outLayerB;
+    }
+
     public void fit(double[][] input, double[][] label, int batch, int epoch, FitListener fitListener){
         int batchNum=input.length/batch;
         int batchIndex=0;
